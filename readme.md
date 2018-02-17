@@ -138,7 +138,7 @@ About Alternative Solutions:
    cron, report by daily
    
    - CON: no frontend JS involved (bad for presentation ;-\), if HTML is in bad format
-   the parsing can easily failed
+   the parsing can be easily failed
    
 5. Scraping Data from 3rd party provider port to google
 
