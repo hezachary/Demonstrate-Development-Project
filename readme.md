@@ -32,13 +32,13 @@ Please take close look of /bootstrap/app.php
 
 1. Change default search box text, please change ```$app->setMeta('DEFAULT_KEYWORDS', 'NSW');```
 2. Change default match box text, please change ```$app->setMeta('DEFAULT_MATCHWORDS', 'nsw.gov.au');```
-3. Current demo use GoogleProvider, if your IP has not blocked by google yet, please change to:
+3. Current demo use GoogleProvider, if your IP is blocked by google, please change from:
 ```
-$app->setRepo(\Provider\Base::class, \Provider\FakeGoogleProvider::class);
+$app->setRepo(\Provider\Base::class, \Provider\GoogleProvider::class);
 ```
 to
 ```
-$app->setRepo(\Provider\Base::class, \Provider\GoogleProvider::class);
+$app->setRepo(\Provider\Base::class, \Provider\FakeGoogleProvider::class);
 ```
 4. Current script search against google.com.au, however, it can also search other google region, please change:
 ```
@@ -73,9 +73,14 @@ Design pattern used:
 
 1. MVC - for load the page, and ajax
 2. Singleton - for App, app does not need to be recreated all the time
-3. Strategy - for search againsts data provide, in case google block the IP, by using the Fake provide to prove code working
-4. Repository - for data provide, so apllication can change the provider by shifting repo config
-5. Dependency injection - for controller, to avoid hardcode object inside method creates difficulties on unit test
+3. Strategy - for search against data provide, in case google block the IP, by using 
+   the Fake provide to prove code working (it is not how production application suppose
+   to work, Fake in current project is nothing but prove of concept for using Strategy 
+   Pattern, otherwise, it should be part of the Unit Testing).
+4. Repository - for data provide, so application can change the provider by shifting 
+   repo config
+5. Dependency injection - for controller, to avoid hard coded object inside method 
+   creates difficulties on unit test
 
 Design pattern was tried to use, but not:
 
@@ -94,9 +99,9 @@ Features thought about, but not implement:
 2. Dependency injection support recursive load object also cover custom variable
    (it is overkilled for application this level)
 3. Router (it is overkilled for application this level)
-4. Create /public/ directory, so index.php and assests are all in public (it can be
-   problem if for anyone try to have a quick setup and see the apllication run)
-5. Add middleware to data provider, such as: Proxy, so scraping can bypass google IP 
+4. Create /public/ directory, so index.php and assets are all in public (it can be
+   problem if for anyone try to have a quick setup and see the application run)
+5. Add middle-ware to data provider, such as: Proxy, so scraping can bypass google IP 
    block (then it bring up another question of scraping proxy list ...)
 
 About Solution:
