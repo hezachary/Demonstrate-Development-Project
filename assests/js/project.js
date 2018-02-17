@@ -83,7 +83,7 @@
     var fnAjax = function (keywords, nextUrl) {
       var aryKeywords = keywords.replace(/\s+/g, ' ').split(' ');
       for(var i in aryKeywords) {
-        aryKeywords[i] = {'keyword': aryKeywords[i], 'regex':new RegExp(aryKeywords[i], 'gs')};
+        aryKeywords[i] = {'keyword': aryKeywords[i], 'regex':new RegExp(aryKeywords[i], 'gi')};
       }
 
       $.post(basepath, {
