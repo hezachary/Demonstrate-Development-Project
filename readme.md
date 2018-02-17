@@ -84,7 +84,7 @@ Design pattern was tried to use, but not:
 Features thought about, but not implement:
 
 1. load config file by $app (easy to do, just and an extra method in App class and
-   by supplied name to locate file, then $this->app[$name] = include $filepath )
+   by supplied name to locate file, then ```$this->app[$name] = include $filepath；``` )
 2. Dependency injection support recursive load object also cover custom variable
    (it is overkilled for application this level)
 3. Router (it is overkilled for application this level)
