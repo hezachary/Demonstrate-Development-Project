@@ -16,6 +16,7 @@
    */
   var search = (function () {
     var total,
+        aryMatchWords,
         $form,
         $displayContainer,
         dataList = [];
@@ -35,9 +36,12 @@
       dataList.push([text, sourceUrl]);
 
       var rowHtml = [];
-      for(var i in aryKeywords) {
-        var count = (text.match(aryKeywords[i].regex) || []).length;
-        rowHtml.push('KEYWORD: ' + aryKeywords[i].keyword + ', FOUND ' + count + ' TIME(S)');
+      var compareData = {'KEYWORD':aryKeywords, 'MATCH WORDS':aryMatchWords};
+      for(var category in compareData) {
+        for(var i in compareData[category]) {
+          var count = (text.match(compareData[category][i].regex) || []).length;
+          rowHtml.push(category + ': ' + compareData[category][i].text + ', FOUND ' + count + ' TIME(S)');
+        }
       }
 
       return '<p>POS: ' + dataList.length + ' <br> ' + rowHtml.join(' <br> ') + ' <br> FROM: ' + title + '<br> VIA: ' + sourceUrl + '</p>';
@@ -83,7 +87,7 @@
     var fnAjax = function (keywords, nextUrl) {
       var aryKeywords = keywords.replace(/\s+/g, ' ').split(' ');
       for(var i in aryKeywords) {
-        aryKeywords[i] = {'keyword': aryKeywords[i], 'regex':new RegExp(aryKeywords[i], 'gi')};
+        aryKeywords[i] = {'text': aryKeywords[i], 'regex':new RegExp(aryKeywords[i], 'gi')};
       }
 
       $.post(basepath, {
@@ -98,13 +102,20 @@
     /**
      * Get data for initialization
      *
-     * @param jQform
-     * @param jQdisplayContainer
+     * @param {jQuery} jQform
+     * @param {jQuery} jQdisplayContainer
+     * @param {int} inputTotal
+     * @param {string} inputMatchwords
      */
-    var fnInit = function (jQform, jQdisplayContainer, inputTotal) {
+    var fnInit = function (jQform, jQdisplayContainer, inputTotal, inputMatchwords) {
       $form = jQform;
       $displayContainer = jQdisplayContainer;
       total = inputTotal;
+
+      aryMatchWords = inputMatchwords.replace(/\s+/g, ' ').split(' ');
+      for(var i in aryMatchWords) {
+        aryMatchWords[i] = {'text': aryMatchWords[i], 'regex':new RegExp(aryMatchWords[i], 'gi')};
+      }
     }
 
     /**
@@ -126,8 +137,9 @@
     $form.on('submit', function (e) {
       e.preventDefault();
       var keywords = $form.find('input[name="keywords"]').val();
+      var matchwords = $form.find('input[name="matchwords"]').val();
       var total = $form.find('input[name="total"]').val();
-      search.init($form, $displayContainer, total);
+      search.init($form, $displayContainer, total, matchwords);
       search.reset();
       search.ajax(keywords, null);
     });

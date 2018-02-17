@@ -88,7 +88,13 @@ $app->setMeta(
  * Default Keywords
  * change to any keywords you like to search
  **/
-$app->setMeta('DEFAULT_KEYWORDS', 'NSW nsw.gov.au');
+$app->setMeta('DEFAULT_KEYWORDS', 'NSW');
+
+/**
+ * Default Match words
+ * change to any match words you like to compare
+ **/
+$app->setMeta('DEFAULT_MATCHWORDS', 'nsw.gov.au');
 
 /**
  * Author

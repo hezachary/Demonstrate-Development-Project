@@ -31,6 +31,7 @@
       <input type="hidden" name="mode" value="submit" />
       <input type="hidden" name="total" value="<?php echo $this->aryExtra['total'];?>" />
         <?php $this->loadTemplate( 'home.keywords', true );?>
+        <?php $this->loadTemplate( 'home.matchwords', true );?>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
     </form>
   </div>

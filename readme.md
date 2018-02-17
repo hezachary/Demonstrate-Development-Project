@@ -30,8 +30,9 @@ More detail:
 
 Please take close look of /bootstrap/app.php
 
-1. Change default search box text, please change ```$app->setMeta('DEFAULT_KEYWORDS', 'NSW nsw.gov.au');```
-2. Current demo use FakeGoogleProvider, if your IP has not blocked by google yet, please change:
+1. Change default search box text, please change ```$app->setMeta('DEFAULT_KEYWORDS', 'NSW');```
+2. Change default match box text, please change ```$app->setMeta('DEFAULT_MATCHWORDS', 'nsw.gov.au');```
+3. Current demo use GoogleProvider, if your IP has not blocked by google yet, please change to:
 ```
 $app->setRepo(\Provider\Base::class, \Provider\FakeGoogleProvider::class);
 ```
@@ -39,7 +40,7 @@ to
 ```
 $app->setRepo(\Provider\Base::class, \Provider\GoogleProvider::class);
 ```
-3. Current script search against google.com.au, however, it can also search other google region, please change:
+4. Current script search against google.com.au, however, it can also search other google region, please change:
 ```
 $app->setMeta(
   \Provider\GoogleProvider::class,
@@ -58,7 +59,7 @@ $app->setMeta(
   ]
 );
 ```
-4. Change total scraping result, please change:
+5. Change total scraping result, please change:
 ```
 $app->setMeta(
   \Model\Search::class,
@@ -100,9 +101,9 @@ Features thought about, but not implement:
 
 About Solution:
 
-Use php to curl google, and use js to parsing html data. I did not use multi-curl
-or JS async call (such as: 10 ajax/curl call in one go), was google will block the
-IP very quickly.
+Use php curl to scraping google, and use js to parsing html data. I did not use 
+multi-curl or JS async call (such as: 10 ajax/curl call in one go), was google will 
+block the IP very quickly.
 
 About Alternative Solutions:
 
@@ -124,14 +125,14 @@ About Alternative Solutions:
 
    - POS: data structure more reliable, easy to setup search machine in API console
    
-   - CON: require share API token, costs may be evolved
+   - CON: require share API token, costs may be involved
    
 4. Scraping Data by google search, process return data by php DOMDocument/SimpleXML
 
-   - POS: backend code only, no browser evolved, can become a console script run by
+   - POS: backend code only, no browser involved, can become a console script run by
    cron, report by daily
    
-   - CON: no frontend JS evolved (bad for presentation ;-\), if HTML is in bad format
+   - CON: no frontend JS involved (bad for presentation ;-\), if HTML is in bad format
    the parsing can easily failed
    
 5. Scraping Data from 3rd party provider port to google
