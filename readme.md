@@ -28,7 +28,7 @@ How to:
 
 More detail:
 
-Please take close look of /test/bootstrap/app.php
+Please take close look of /bootstrap/app.php
 
 1. Change default search box text, please change ```$app->setMeta('DEFAULT_KEYWORDS', 'NSW nsw.gov.au');```
 2. Current demo use FakeGoogleProvider, if your IP has not blocked by google yet, please change:
