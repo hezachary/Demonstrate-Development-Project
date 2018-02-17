@@ -98,24 +98,38 @@ IP very quickly.
 About Alternative Solutions:
 
 1. GreaseMonkey script
-   POS: very small, JS only
-   CON: very limit design patterns can be applied, require install Browser plugin
+
+   - POS: very small, JS only
+   
+   - CON: very limit design patterns can be applied, require install Browser plugin
+   
 2. Remote host JS, browser console includes and executes (js can create a invisible
    iframe, since the JS is inject after google page load, there is no cross region
    issue, js can read and write to current google page freely)
-   POS: smallest, JS only
-   CON: more towards developer, require open google page and search first
+   
+   - POS: smallest, JS only
+   
+   - CON: more towards developer, require open google page and search first
+   
 3. Scraping Data by google custom search API
-   POS: data structure more reliable, easy to setup search machine in API console
-   CON: require share API token, costs may be evolved
+
+   - POS: data structure more reliable, easy to setup search machine in API console
+   
+   - CON: require share API token, costs may be evolved
+   
 4. Scraping Data by google search, process return data by php DOMDocument/SimpleXML
-   POS: backend code only, no browser evolved, can become a console script run by
+
+   - POS: backend code only, no browser evolved, can become a console script run by
    cron, report by daily
-   CON: no frontend JS evolved (bad for presentation ;-\), if HTML is in bad format
+   
+   - CON: no frontend JS evolved (bad for presentation ;-\), if HTML is in bad format
    the parsing can easily failed
+   
 5. Scraping Data from 3rd party provider port to google
-   POS: may bypass google IP block policy
-   CON: security reason, also flooding independent individual server make me feel
+
+   - POS: may bypass google IP block policy
+   
+   - CON: security reason, also flooding independent individual server make me feel
    bad
 
 Technology used:
