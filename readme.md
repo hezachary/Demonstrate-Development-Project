@@ -95,6 +95,8 @@ Features thought about, but not implement:
 3. Router (it is overkilled for application this level)
 4. Create /public/ directory, so index.php and assests are all in public (it can be
    problem if for anyone try to have a quick setup and see the apllication run)
+5. Add middleware to data provider, such as: Proxy, so scraping can bypass google IP 
+   block (then it bring up another question of scraping proxy list ...)
 
 About Solution:
 
