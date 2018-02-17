@@ -15,6 +15,11 @@ Result:
    block IP for heavy scraping)
 2. Use javascript for process returned HTML, and flush to browser
 
+Requirements:
+
+1. PHP7
+2. Internet
+
 How to:
 
 1. Copy the code to any dev site /test/ directory, make sure you access the page via: http://xxxxx/test/index.php
@@ -88,6 +93,8 @@ Features thought about, but not implement:
 2. Dependency injection support recursive load object also cover custom variable
    (it is overkilled for application this level)
 3. Router (it is overkilled for application this level)
+4. Create /public/ directory, so index.php and assests are all in public (it can be
+   problem if for anyone try to have a quick setup and see the apllication run)
 
 About Solution:
 
